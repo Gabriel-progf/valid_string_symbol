@@ -31,7 +31,7 @@ public class App {
 
         String filteredText = "";
 
-        for (int i = 0; i < symbolList.length; i++) {
+        for (int i = 0; i < text.length(); i++) {
             String character = Character.toString(text.charAt(i));
 
             if (Arrays.asList(symbolList).contains(character)) {
