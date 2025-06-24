@@ -59,10 +59,19 @@ public class App {
             String character = Character.toString(symbols.charAt(i));
 
             if (openSymbols.contains(character)) {
-                stackSymbols.push(character);
+                // Handle quotes, where the opening and closing symbol are equal
+                if (dictSymbols.get(character).equals(character)) {
+                    if (!stackSymbols.empty() && stackSymbols.peek().equals(character)) {
+                        stackSymbols.pop();
+                    } else {
+                        stackSymbols.push(character);
+                    }
+                } else {
+                    stackSymbols.push(character);
+                }
             } else if (dictSymbols.containsValue(character)) {
 
-                if (stackSymbols.empty() || dictSymbols.get(stackSymbols.pop()) != character) {
+                if (stackSymbols.empty() || !dictSymbols.get(stackSymbols.pop()).equals(character)) {
                     return false;
                 }
 
